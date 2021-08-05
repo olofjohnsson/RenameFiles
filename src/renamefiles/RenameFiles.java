@@ -37,6 +37,9 @@ public class RenameFiles extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButtonChooseDir = new javax.swing.JButton();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenuFile = new javax.swing.JMenu();
+        jMenuItemAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +68,21 @@ public class RenameFiles extends javax.swing.JFrame {
                 jButtonChooseDirActionPerformed(evt);
             }
         });
+
+        jMenuFile.setText("Arkiv");
+
+        jMenuItemAbout.setText("Om");
+        jMenuItemAbout.setActionCommand("Om");
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAboutActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemAbout);
+
+        jMenuBar.add(jMenuFile);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,6 +168,10 @@ public class RenameFiles extends javax.swing.JFrame {
           }
     }//GEN-LAST:event_jButtonChooseDirActionPerformed
 
+    private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
+        new About(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItemAboutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +238,9 @@ public class RenameFiles extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenu jMenuFile;
+    private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JTextField jTextFieldReplacementString;
     private javax.swing.JTextField jTextFieldStringToFind;
     // End of variables declaration//GEN-END:variables
