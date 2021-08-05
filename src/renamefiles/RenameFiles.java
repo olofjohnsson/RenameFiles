@@ -1,6 +1,6 @@
 
 package renamefiles;
-
+import java.nio.file.Files;
 import java.io.File;
 import javax.swing.JFileChooser;
 
@@ -10,8 +10,10 @@ import javax.swing.JFileChooser;
  */
 public class RenameFiles extends javax.swing.JFrame {
     JFileChooser chooser;
-    String choosertitle;
+    String choosertitle="Välj mapp";
     String path = "C:\\temp\\renamer";
+    File folder = new File("C:\\init");
+    File folderInit = new File("C:\\init");
     String stringToFind = "";
     String replacementString = "";
 
@@ -28,13 +30,13 @@ public class RenameFiles extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser2 = new javax.swing.JFileChooser();
-        jTextFieldFolderPath = new javax.swing.JTextField();
         jButtonRename = new javax.swing.JButton();
         jTextFieldStringToFind = new javax.swing.JTextField();
         jTextFieldReplacementString = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButtonChooseDir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +59,13 @@ public class RenameFiles extends javax.swing.JFrame {
 
         jLabel3.setText("Sökväg");
 
+        jButtonChooseDir.setText("Välj mapp");
+        jButtonChooseDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChooseDirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,18 +73,18 @@ public class RenameFiles extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButtonRename)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldStringToFind, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(34, 34, 34)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
                                 .addComponent(jTextFieldReplacementString, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jButtonChooseDir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,9 +100,9 @@ public class RenameFiles extends javax.swing.JFrame {
                     .addComponent(jTextFieldReplacementString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonChooseDir)
+                .addGap(10, 10, 10)
                 .addComponent(jButtonRename)
                 .addGap(37, 37, 37))
         );
@@ -106,14 +115,40 @@ public class RenameFiles extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldStringToFindActionPerformed
 
     private void jButtonRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRenameActionPerformed
-        path = jTextFieldFolderPath.getText();
         stringToFind = jTextFieldStringToFind.getText();
         replacementString = jTextFieldReplacementString.getText();
-        File folder = new File(path);
+        if (folder.getPath()=="C:\\init"){
+            System.out.println("folder is: " + folder.getPath());
+        }
+        System.out.println("Folder är: " + folder.getPath());
         changeFilesOfFolder(folder, stringToFind, replacementString);
         
         
     }//GEN-LAST:event_jButtonRenameActionPerformed
+
+    private void jButtonChooseDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChooseDirActionPerformed
+        int result;
+        
+        chooser = new JFileChooser(); 
+        chooser.setCurrentDirectory(new java.io.File("C:"));
+        chooser.setDialogTitle(choosertitle);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    //
+    // disable the "All files" option.
+    //
+        chooser.setAcceptAllFileFilterUsed(false);
+    //    
+        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) { 
+          System.out.println("getCurrentDirectory(): " 
+             +  chooser.getCurrentDirectory());
+          System.out.println("getSelectedFile() : " 
+             +  chooser.getSelectedFile());
+          folder = chooser.getSelectedFile();
+        }
+        else {
+          System.out.println("No Selection ");
+          }
+    }//GEN-LAST:event_jButtonChooseDirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,12 +210,12 @@ public class RenameFiles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonChooseDir;
     private javax.swing.JButton jButtonRename;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextFieldFolderPath;
     private javax.swing.JTextField jTextFieldReplacementString;
     private javax.swing.JTextField jTextFieldStringToFind;
     // End of variables declaration//GEN-END:variables

@@ -30,15 +30,14 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextFieldFolderPath" min="-2" pref="394" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jButtonRename" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jTextFieldStringToFind" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldReplacementString" min="-2" pref="185" max="-2" attributes="0"/>
@@ -46,6 +45,7 @@
                       </Group>
                   </Group>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonChooseDir" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -66,9 +66,9 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextFieldFolderPath" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonChooseDir" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="jButtonRename" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
@@ -76,8 +76,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextFieldFolderPath">
-    </Component>
     <Component class="javax.swing.JButton" name="jButtonRename">
       <Properties>
         <Property name="text" type="java.lang.String" value="Byt namn"/>
@@ -107,6 +105,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#xf6;kv&#xe4;g"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonChooseDir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj mapp"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonChooseDirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
